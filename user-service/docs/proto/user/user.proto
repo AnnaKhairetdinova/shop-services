@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package user;
+
+option go_package = "github.com/AnnaKhairetdinova/shop-services/proto/user";
+
+service UserService {
+    rpc CreateUser (CreateUserRequest)  returns (CreateUserResponse);
+    rpc GetUser    (GetUserRequest)     returns (GetUserResponse);
+    rpc ListUsers  (ListUsersRequest)   returns (ListUsersResponse);
+}
+
+message UserMessage {
+    string uuid = 1;
+    string name = 2;
+    string email = 3;
+    string created_at = 4;
+}
+
+message CreateUserRequest {
+    string name = 1;
+    string email = 2;
+}
+message CreateUserResponse {
+    UserMessage user = 1;
+}
+
+message GetUserRequest {
+    string uuid = 1;
+}
+message GetUserResponse {
+    UserMessage user = 1;
+}
+
+message ListUsersRequest {}
+message ListUsersResponse {
+    repeated UserMessage users = 1;
+}
